@@ -26,11 +26,11 @@ MECH_OPTIONS=""
 # A value of 0 will fork a new process for each connection.
 THREADS=5
 
-# Other options (default: -c -m /var/run/saslauthd)
+# Other options (default: -c -m /run/saslauthd)
 # Note: You MUST specify the -m option or saslauthd won't run!
 #
 # See the saslauthd man page and the output of 'saslauthd -h' for general
 # information about these options.
-SASLAUTHD_OPTS="-c -m /var/run/saslauthd"
+SASLAUTHD_OPTS="-c -m /run/saslauthd"
 
 # End /etc/default/saslauthd

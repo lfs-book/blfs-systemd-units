@@ -1,3 +1,6 @@
+2021-01-22 Xi Ruoyao <xry111@mengyan1223.wang>
+	* Modify the remaining occurences of /var/run to /run.
+
 2021-01-22 Douglas R. Reno <renodr@linuxfromscratch.org>
 	* Modify the rpcbind socket to use /run instead of /var/run like other sockets.
 
