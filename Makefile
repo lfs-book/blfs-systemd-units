@@ -2,9 +2,9 @@ SHELL=/bin/bash
 
 EXTDIR=${DESTDIR}/etc
 DEFAULTSDIR=${DESTDIR}/etc/default
-SERVICEDIR=${DESTDIR}/lib/services
+SERVICEDIR=${DESTDIR}/usr/lib/services
 TMPFILESDIR=${DESTDIR}/usr/lib/tmpfiles.d
-UNITSDIR=${DESTDIR}/lib/systemd/system
+UNITSDIR=${DESTDIR}/usr/lib/systemd/system
 MODE=755
 DIRMODE=755
 CONFMODE=644
