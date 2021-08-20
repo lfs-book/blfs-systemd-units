@@ -1,3 +1,6 @@
+2021-08-19 Xi Ruoyao <xry111@mengyan1223.wang>
+	* Modify gpm to wait for udev to create /dev/input/mice.
+
 2021-04-18 Xi Ruoyao <xry111@mengyan1223.wang>
 	* Modify the remaining occurences of /var/run to /run.
 

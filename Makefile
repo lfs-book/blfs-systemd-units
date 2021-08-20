@@ -61,6 +61,7 @@ install-git-daemon: create-dirs
 
 install-gpm: create-dirs
 	install -m ${CONFMODE} blfs/units/gpm.service ${UNITSDIR}/
+	install -m ${CONFMODE} blfs/units/gpm.path    ${UNITSDIR}/
 	test -n "${DESTDIR}" || systemctl enable gpm.service
 
 install-haveged: create-dirs
