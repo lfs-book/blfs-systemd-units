@@ -1,6 +1,6 @@
 [Unit]
 Description=Unbound DNS Resolver
-After=network.target
+After=local-fs.target network-online.target
 
 [Service]
 PIDFile=/run/unbound.pid

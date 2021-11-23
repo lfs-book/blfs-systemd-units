@@ -1,3 +1,6 @@
+2021-11-23 Douglas R. Reno <renodr@linuxfromscratch.org>
+   * Adjust unbound.service to prevent systems from failing to start up.
+
 2021-08-19 Xi Ruoyao <xry111@mengyan1223.wang>
 	* Adjust install paths for merged-/usr hierarchy.
 	* Modify gpm to wait for udev to create /dev/input/mice.
