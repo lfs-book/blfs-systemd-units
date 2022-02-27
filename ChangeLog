@@ -1,3 +1,6 @@
+2022-02-27 Douglas R. Reno <renodr@linuxfromscratch.org>
+	* Remove plymouth-quit.service from After= in lightdm.service.
+
 2021-11-23 Douglas R. Reno <renodr@linuxfromscratch.org>
    * Adjust unbound.service to prevent systems from failing to start up.
 
