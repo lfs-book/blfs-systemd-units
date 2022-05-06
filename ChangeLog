@@ -1,3 +1,7 @@
+2022-05-06 Douglas R. Reno <renodr at linuxfromscratch.org>
+	* Remove obsolete rpcbind.socket/rpcbind.service units since we're now
+	using the ones provided by upstream.
+
 2022-02-27 Douglas R. Reno <renodr@linuxfromscratch.org>
 	* Remove plymouth-quit.service from After= in lightdm.service.
 

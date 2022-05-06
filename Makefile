@@ -147,11 +147,6 @@ install-proftpd: create-dirs
 	install -m ${CONFMODE} blfs/units/proftpd.service ${UNITSDIR}/
 	test -n "${DESTDIR}" || systemctl enable proftpd.service
 
-install-rpcbind: create-dirs
-	install -m ${CONFMODE} blfs/units/rpcbind.service ${UNITSDIR}/
-	install -m ${CONFMODE} blfs/units/rpcbind.socket ${UNITSDIR}/
-	test -n "${DESTDIR}" || systemctl enable rpcbind.socket
-
 install-rsyncd: create-dirs
 	install -m ${CONFMODE} blfs/units/rsyncd.service ${UNITSDIR}/
 	install -m ${CONFMODE} blfs/units/rsyncdat.service ${UNITSDIR}/rsyncd@.service
@@ -329,11 +324,6 @@ uninstall-proftpd:
 	test -n "${DESTDIR}" || systemctl disable proftpd.service
 	rm -f ${UNITSDIR}/proftpd.service
 
-uninstall-rpcbind:
-	test -n "${DESTDIR}" || systemctl stop rpcbind.socket
-	test -n "${DESTDIR}" || systemctl disable rpcbind.socket
-	rm -f ${UNITSDIR}/rpcbind.service ${UNITSDIR}/rpcbind.socket
-
 uninstall-rsyncd:
 	test -n "${DESTDIR}" || systemctl stop rsyncd.socket
 	test -n "${DESTDIR}" || systemctl stop rsyncd.service
@@ -414,7 +404,6 @@ uninstall-winbindd:
 	install-postfix \
 	install-postgresql \
 	install-proftpd \
-	install-rpcbind \
 	install-rsyncd \
 	install-samba \
 	install-saslauthd \
@@ -446,7 +435,6 @@ uninstall-winbindd:
 	uninstall-postfix \
 	uninstall-postgresql \
 	uninstall-proftpd \
-	uninstall-rpcbind \
 	uninstall-rsyncd \
 	uninstall-samba \
 	uninstall-saslauthd \
