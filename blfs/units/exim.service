@@ -1,6 +1,7 @@
 [Unit]
 Description=Exim Mail Daemon
 After=network.target
+Conflicts=sendmail.service postfix.service
 
 [Service]
 PIDFile=/run/exim.pid

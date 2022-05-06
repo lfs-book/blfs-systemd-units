@@ -1,4 +1,6 @@
 2022-05-06 Douglas R. Reno <renodr at linuxfromscratch.org>
+	* Add conflicts to exim.service to prevent it from starting on systems
+	where sendmail.service *or* postfix.service are present.
 	* Add conflicts to postfix.service to prevent it from starting on systems
 	where sendmail.service *or* exim.service are present.
 	* Remove obsolete rpcbind.socket/rpcbind.service units since we're now
