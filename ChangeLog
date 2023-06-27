@@ -1,3 +1,6 @@
+2023-06-27 Douglas R. Reno <renodr at linuxfromscratch.org>
+  * Add a systemd unit for the Kea DHCP server which is coming to BLFS.
+
 2022-07-20 Douglas R. Reno <renodr at linuxfromscratch.org>
   * Add conflicts to lightdm.service to prevent it from being enabled on
   systems with LXDM or GDM installed.

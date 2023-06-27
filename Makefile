@@ -78,6 +78,10 @@ install-iptables: create-dirs
 	install -m ${CONFMODE} blfs/units/iptables.service ${UNITSDIR}/
 	test -n "${DESTDIR}" || systemctl enable iptables.service
 
+install-kea: create-dirs
+	install -m ${CONFMODE} blfs/units/kea-dhcp.service ${UNITSDIR}/
+	test -n "${DESTDIR}" || systemctl enable kea-dhcp.service
+
 install-krb5: create-dirs
 	install -m ${CONFMODE} blfs/units/krb5-kdc.service ${UNITSDIR}/
 	install -m ${CONFMODE} blfs/units/krb5-kpropd.service ${UNITSDIR}/
@@ -255,6 +259,11 @@ uninstall-iptables:
 	test -n "${DESTDIR}" || systemctl disable iptables.service
 	rm -f ${UNITSDIR}/iptables.service
 
+uninstall-kea:
+	test -n "${DESTDIR}" || systemctl stop kea-dhcp.service
+	test -n "${DESTDIR}" || systemctl disable kea-dhcp.service
+	rm -f ${UNITSDIR}/kea-dhcp.service
+
 uninstall-krb5:
 	test -n "${DESTDIR}" || systemctl stop krb5-kadmind.service
 	test -n "${DESTDIR}" || systemctl stop krb5-kpropd.service
@@ -392,6 +401,7 @@ uninstall-winbindd:
 	install-gpm \
 	install-httpd \
 	install-iptables \
+	install-kea \
 	install-krb5 \
 	install-mysqld \
 	install-named \
@@ -423,6 +433,7 @@ uninstall-winbindd:
 	uninstall-gpm \
 	uninstall-httpd \
 	uninstall-iptables \
+	uninstall-kea \
 	uninstall-krb5 \
 	uninstall-mysqld \
 	uninstall-named \
