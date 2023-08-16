@@ -1,3 +1,8 @@
+2023-08-16 Douglas R. Reno <renodr at linuxfromscratch.org>
+  * Add the SENDMAIL_OPTARG variable to /etc/default/sendmail. This is to
+  silence a warning that appears when running the 'sendmail' service or the
+  'sm-client' service.
+
 2023-06-27 Douglas R. Reno <renodr at linuxfromscratch.org>
   * Add a systemd unit for the Kea DHCP server which is coming to BLFS.
 
