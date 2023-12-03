@@ -78,9 +78,9 @@ install-iptables: create-dirs
 	install -m ${CONFMODE} blfs/units/iptables.service ${UNITSDIR}/
 	test -n "${DESTDIR}" || systemctl enable iptables.service
 
-install-kea: create-dirs
-	install -m ${CONFMODE} blfs/units/kea-dhcp.service ${UNITSDIR}/
-	test -n "${DESTDIR}" || systemctl enable kea-dhcp.service
+install-kea-dhcpd: create-dirs
+	install -m ${CONFMODE} blfs/units/kea-* ${UNITSDIR}/
+	test -n "${DESTDIR}" || systemctl enable kea-dhcp4-server.service
 
 install-krb5: create-dirs
 	install -m ${CONFMODE} blfs/units/krb5-kdc.service ${UNITSDIR}/
