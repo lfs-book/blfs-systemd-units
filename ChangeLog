@@ -1,3 +1,14 @@
+2023-12-05 Douglas R. Reno <renodr at linuxfromscratch dot org>
+  * Removed targets that were copied over from the SysV bootscripts makefile.
+  These were for installing network services and creating service directories
+  in /etc/sysconfig/network-devices/services.
+  * Removed the ISC DHCPD systemd unit since it has been removed from the
+  book.
+  * Removed the ISC DHCLIENT systemd unit since it has been removed from the
+  book.
+  * Removed the defaults file for dhcpd since it has been removed from the
+  book.
+
 2023-12-03 Pierre Labastie <pierre dot labastie at neuf dot fr>
   * Separate service units for each kea daemon. This is the recommended
   way by upstream. Units have been copied from 

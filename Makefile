@@ -18,37 +18,13 @@ create-dirs:
 	install -d -m ${DIRMODE} ${TMPFILESDIR}
 	install -d -m ${DIRMODE} ${UNITSDIR}
 
-create-service-dir:
-	install -d -m ${DIRMODE} ${EXTDIR}/sysconfig/network-devices/services
-	install -d -m ${DIRMODE} ${SERVICEDIR}
-
-install-service-dhclient: create-service-dir
-	install -m ${MODE} blfs/services/dhclient ${SERVICEDIR}
-
-install-service-dhcpcd: create-service-dir
-	install -m ${MODE} blfs/services/dhcpcd  ${SERVICEDIR}
-
-install-service-bridge: create-service-dir
-	install -m ${MODE} blfs/services/bridge  ${SERVICEDIR}
-
-install-service-wpa: create-service-dir
-	install -m ${MODE} blfs/services/wpa ${SERVICEDIR}
-
 install-acpid: create-dirs
 	install -m ${CONFMODE} blfs/units/acpid.service ${UNITSDIR}/
 	install -m ${CONFMODE} blfs/units/acpid.socket ${UNITSDIR}/
 	test -n "${DESTDIR}" || systemctl enable acpid.socket
 
-install-dhclient: create-dirs
-	install -m ${CONFMODE} blfs/units/dhclientat.service ${UNITSDIR}/dhclient@.service
-
 install-dhcpcd: create-dirs
 	install -m ${CONFMODE} blfs/units/dhcpcdat.service ${UNITSDIR}/dhcpcd@.service
-
-install-dhcpd: create-dirs
-	install -m ${CONFMODE} blfs/default/dhcpd ${DEFAULTSDIR}/
-	install -m ${CONFMODE} blfs/units/dhcpd.service ${UNITSDIR}/
-	test -n "${DESTDIR}" || systemctl enable dhcpd.service
 
 install-exim: create-dirs
 	install -m ${CONFMODE} blfs/units/exim.service ${UNITSDIR}/
@@ -219,16 +195,8 @@ uninstall-acpid:
 	test -n "${DESTDIR}" || systemctl disable acpid.socket
 	rm -f ${UNITSDIR}/acpid.service ${UNITSDIR}/acpid.socket
 
-uninstall-dhclient:
-	rm -f ${UNITSDIR}/dhclient@.service
-
 uninstall-dhcpcd:
 	rm -f ${UNITSDIR}/dhcpcd@.service
-
-uninstall-dhcpd:
-	test -n "${DESTDIR}" || systemctl stop dhcpd.service
-	test -n "${DESTDIR}" || systemctl disable dhcpd.service
-	rm -f ${DEFAULTSDIR}/dhcpd ${UNITSDIR}/dhcpd.service
 
 uninstall-exim:
 	test -n "${DESTDIR}" || systemctl stop exim.service
@@ -393,9 +361,7 @@ uninstall-winbindd:
 
 .PHONY: all create-dirs create-service-dir \
 	install-acpid \
-	install-dhclient \
 	install-dhcpcd \
-	install-dhcpd \
 	install-exim \
 	install-git-daemon \
 	install-gpm \
@@ -425,9 +391,7 @@ uninstall-winbindd:
 	install-vsftpd \
 	install-winbindd \
 	uninstall-acpid \
-	uninstall-dhclient \
 	uninstall-dhcpcd \
-	uninstall-dhcpd \
 	uninstall-exim \
 	uninstall-git-daemon \
 	uninstall-gpm \
