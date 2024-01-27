@@ -1,3 +1,7 @@
+2023-12-05 Xi Ruoyao <xry111 at xry111 dot site>
+  * Add "-" into the ExecStart= line in sshd@.service, to prevent leaving
+  failed services on failed login attempts when sshd.socket is used.
+
 2023-12-05 Douglas R. Reno <renodr at linuxfromscratch dot org>
   * Removed targets that were copied over from the SysV bootscripts makefile.
   These were for installing network services and creating service directories
