@@ -1,3 +1,7 @@
+2024-02-05 Douglas R. Reno <renodr at linuxfromscratch dot org>
+  * Set SLAPD_OPTS to an empty string by default to resolve a warning that
+  occurs when starting slapd.
+
 2023-12-05 Xi Ruoyao <xry111 at xry111 dot site>
   * Add "-" into the ExecStart= line in sshd@.service, to prevent leaving
   failed services on failed login attempts when sshd.socket is used.
