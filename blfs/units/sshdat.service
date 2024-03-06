@@ -4,4 +4,4 @@ Description=SSH Per-Connection Server
 [Service]
 ExecStart=-/usr/sbin/sshd -i
 StandardInput=socket
-StandardError=syslog
+StandardError=journal

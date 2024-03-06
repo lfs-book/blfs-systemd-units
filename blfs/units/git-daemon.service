@@ -7,8 +7,8 @@ ExecStart=/usr/bin/git daemon --reuseaddr --base-path=$GIT_BASE_DIR $GIT_DAEMON_
 Restart=always
 RestartSec=500ms
 
-StandardOutput=syslog
-StandardError=syslog
+StandardOutput=journal
+StandardError=journal
 SyslogIdentifier=git-daemon
 
 User=git
