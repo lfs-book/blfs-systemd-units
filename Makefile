@@ -70,11 +70,11 @@ install-lightdm: create-dirs
 	install -m ${CONFMODE} blfs/units/lightdm.service ${UNITSDIR}/
 	test -n "${DESTDIR}" || systemctl enable lightdm.service
 
-install-mysqld: create-dirs
-	install -m ${CONFMODE} blfs/tmpfiles/mysqld.conf ${TMPFILESDIR}/
-	install -m ${CONFMODE} blfs/units/mysqld.service ${UNITSDIR}/
-	systemd-tmpfiles --create mysqld.conf
-	test -n "${DESTDIR}" || systemctl enable mysqld.service
+install-mariadb: create-dirs
+	install -m ${CONFMODE} blfs/tmpfiles/mariadb.conf ${TMPFILESDIR}/
+	install -m ${CONFMODE} blfs/units/mariadb.service ${UNITSDIR}/
+	systemd-tmpfiles --create mariadb.conf
+	test -n "${DESTDIR}" || systemctl enable mariadb.service
 
 install-named: create-dirs
 	install -m ${CONFMODE} blfs/tmpfiles/named.conf ${TMPFILESDIR}/
@@ -251,6 +251,11 @@ uninstall-mysqld:
 	test -n "${DESTDIR}" || systemctl disable mysqld.service
 	rm -f ${TMPFILESDIR}/mysqld.conf ${UNITSDIR}/mysqld.service
 
+uninstall-mariadb:
+	test -n "${DESTDIR}" || systemctl stop mariadb.service
+	test -n "${DESTDIR}" || systemctl disable mariadb.service
+	rm -f ${TMPFILESDIR}/mariadb.conf ${UNITSDIR}/mariadb.service
+
 uninstall-named:
 	test -n "${DESTDIR}" || systemctl stop named.service
 	test -n "${DESTDIR}" || systemctl disable named.service
@@ -369,7 +374,7 @@ uninstall-winbindd:
 	install-iptables \
 	install-kea \
 	install-krb5 \
-	install-mysqld \
+	install-mariadb \
 	install-named \
 	install-nfs-client \
 	install-nfs-server \
@@ -400,6 +405,7 @@ uninstall-winbindd:
 	uninstall-kea \
 	uninstall-krb5 \
 	uninstall-mysqld \
+	uninstall-mariadb \
 	uninstall-named \
 	uninstall-nfs-client \
 	uninstall-nfs-server \
