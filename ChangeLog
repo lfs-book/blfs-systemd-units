@@ -1,5 +1,12 @@
 2024-12-09 Bruce Dubbs <bdubbs@linuxfromscratch.org>
-   * Add sysmond service.
+  * Add sysmond service.
+
+2024-09-16 Douglas R. Reno <renodr at linuxfromscratch dot org>
+  * Change mysqld.service to mariadb.service to adapt to changes required by
+  the update to MariaDB 11.4.3. This includes changing the paths and usernames
+  and groups to reference mariadb, as well as adding Conflicts to make sure
+  that users use the new version. To simplify adapting to the changes, the
+  uninstall-mysqld Makefile target has been kept.
 
 2024-03-06 Xi Ruoyao <xry111 at xry111 dot site>
   * Use "journal" instead of "syslog" for StandardOutput= and StandardError=
