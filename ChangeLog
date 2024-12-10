@@ -1,3 +1,6 @@
+2024-12-09 Bruce Dubbs <bdubbs@linuxfromscratch.org>
+   * Add sysmond service.
+
 2024-03-06 Xi Ruoyao <xry111 at xry111 dot site>
   * Use "journal" instead of "syslog" for StandardOutput= and StandardError=
     to avoid a warning from systemd.

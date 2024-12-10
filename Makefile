@@ -171,6 +171,10 @@ install-sshd: create-dirs
 	install -m ${CONFMODE} blfs/units/sshd.socket ${UNITSDIR}/
 	test -n "${DESTDIR}" || systemctl enable sshd.service
 
+install-sysmond: create-dirs
+	install -m ${CONFMODE} blfs/units/sysmond.service ${UNITSDIR}/
+	test -n "${DESTDIR}" || systemctl enable sysmond.service
+
 install-svnserve: create-dirs
 	install -m ${CONFMODE} blfs/default/svnserve ${DEFAULTSDIR}/
 	install -m ${CONFMODE} blfs/tmpfiles/svnserve.conf ${TMPFILESDIR}/
@@ -344,6 +348,11 @@ uninstall-svnserve:
 	test -n "${DESTDIR}" || systemctl disable svnserve.service
 	rm -f ${DEFAULTSDIR}/svnserve ${TMPFILESDIR}/svnserve.conf ${UNITSDIR}/svnserve.service
 
+uninstall-sysmond:
+	test -n "${DESTDIR}" || systemctl stop sysmond.service
+	test -n "${DESTDIR}" || systemctl disable sysmond.service
+	rm -f ${UNITSDIR}/sysmondd.service
+
 uninstall-unbound:
 	test -n "${DESTDIR}" || systemctl stop unbound.service
 	test -n "${DESTDIR}" || systemctl disable unbound.service
@@ -387,6 +396,7 @@ uninstall-winbindd:
 	install-slapd \
 	install-sshd \
 	install-svnserve \
+	install-sysmond \
 	install-unbound \
 	install-vsftpd \
 	install-winbindd \
@@ -417,6 +427,7 @@ uninstall-winbindd:
 	uninstall-slapd \
 	uninstall-sshd \
 	uninstall-svnserve \
+	uninstall-sysmond \
 	uninstall-unbound \
 	uninstall-vsftpd \
 	uninstall-winbindd \
