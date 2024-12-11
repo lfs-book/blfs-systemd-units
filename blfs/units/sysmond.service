@@ -3,7 +3,7 @@ Description=System Monitoring Daemon
 After=network.target
 
 [Service]
-Type=simple
+Type=forking
 ExecStart=/usr/sbin/sysmond
 PIDFile=/run/sysmond.pid
 
