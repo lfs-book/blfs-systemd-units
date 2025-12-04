@@ -56,6 +56,8 @@ install-iptables: create-dirs
 
 install-kea-dhcpd: create-dirs
 	install -m ${CONFMODE} blfs/units/kea-* ${UNITSDIR}/
+	install -m ${CONFMODE} blfs/tmpfiles/kea.conf ${TMPFILESDIR}/
+	systemd-tmpfiles --create kea.conf
 	test -n "${DESTDIR}" || systemctl enable kea-dhcp4-server.service
 
 install-krb5: create-dirs
@@ -231,10 +233,11 @@ uninstall-iptables:
 	test -n "${DESTDIR}" || systemctl disable iptables.service
 	rm -f ${UNITSDIR}/iptables.service
 
-uninstall-kea:
+uninstall-kea-dhcpd:
 	test -n "${DESTDIR}" || systemctl stop kea-dhcp.service
 	test -n "${DESTDIR}" || systemctl disable kea-dhcp.service
-	rm -f ${UNITSDIR}/kea-dhcp.service
+	rm -f ${UNITSDIR}/kea-*
+	rm -f ${TMPFILESDIR}/kea.conf
 
 uninstall-krb5:
 	test -n "${DESTDIR}" || systemctl stop krb5-kadmind.service
@@ -412,7 +415,7 @@ uninstall-winbindd:
 	uninstall-gpm \
 	uninstall-httpd \
 	uninstall-iptables \
-	uninstall-kea \
+	uninstall-kea-dhcpd \
 	uninstall-krb5 \
 	uninstall-mysqld \
 	uninstall-mariadb \

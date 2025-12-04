@@ -1,12 +1,13 @@
 [Unit]
-Description=ISC KEA DDNS service
+Description=ISC KEA Dynamic DNS Update Server
 Documentation=man:kea-dhcp-ddns(8)
 Wants=network-online.target
-After=network-online.target time-sync.target
+After=network-online.target time-sync.target named.service
 
 [Service]
+Environment="KEA_PIDFILE_DIR=/run"
+Environment="KEA_CONTROL_SOCKET_DIR=/run/kea"
 ExecStart=/usr/sbin/kea-dhcp-ddns -c /etc/kea/kea-dhcp-ddns.conf
-RuntimeDirectory=kea
 
 [Install]
 WantedBy=kea-dhcp4-server.service
