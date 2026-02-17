@@ -1,6 +1,9 @@
 [Unit]
 Description=OpenLDAP server daemon
 After=network.target
+Documentation=man:slapd
+Documentation=man:slapd-config
+Documentation=man:slapd-mdb
 
 [Service]
 Type=forking
