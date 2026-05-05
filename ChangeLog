@@ -1,3 +1,9 @@
+2026-05-05 Pierre Labastie <pierre dot labastie at neuf dot fr>
+  * Removed obsolete units and correponding entries in Makefile
+  * Remove the command that enables the units from Makefile. Those have
+    been moved to the book, which leaves the decision to enable units to
+    the user.
+
 2026-02-17 Douglas R. Reno <renodr at linuxfromscratch dot org>
   * Updated the Exim systemd unit to use 15 minutes for the mail queue
     processing time. This matches both the book and the SysV bootscript.
