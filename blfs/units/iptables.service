@@ -6,6 +6,15 @@ After=network.target
 [Service]
 Type=forking
 ExecStart=/etc/systemd/scripts/iptables
+ExecStop=/sbin/iptables --policy INPUT   ACCEPT
+ExecStop=/sbin/iptables --policy OUTPUT  ACCEPT
+ExecStop=/sbin/iptables --policy FORWARD ACCEPT
+ExecStop=/sbin/iptables           --flush
+ExecStop=/sbin/iptables -t nat    --flush
+ExecStop=/sbin/iptables -t mangle --flush
+ExecStop=/sbin/iptables           --delete-chain
+ExecStop=/sbin/iptables -t nat    --delete-chain
+ExecStop=/sbin/iptables -t mangle --delete-chain
 TimeoutSec=0
 RemainAfterExit=yes
 
