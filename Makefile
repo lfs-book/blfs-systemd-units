@@ -21,68 +21,48 @@ create-dirs:
 install-acpid: create-dirs
 	install -m ${CONFMODE} blfs/units/acpid.service ${UNITSDIR}/
 	install -m ${CONFMODE} blfs/units/acpid.socket ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable acpid.socket
-
-#install-dhcpcd: create-dirs
-#	install -m ${CONFMODE} blfs/units/dhcpcdat.service ${UNITSDIR}/dhcpcd@.service
 
 install-exim: create-dirs
 	install -m ${CONFMODE} blfs/units/exim.service ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable exim.service
 
 install-git-daemon: create-dirs
 	install -m ${CONFMODE} blfs/default/git-daemon ${DEFAULTSDIR}/
 	install -m ${CONFMODE} blfs/units/git-daemon.service ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable git-daemon.service
 
 install-gpm: create-dirs
 	install -m ${CONFMODE} blfs/units/gpm.service ${UNITSDIR}/
 	install -m ${CONFMODE} blfs/units/gpm.path    ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable gpm.service
-
-#install-haveged: create-dirs
-#	install -m ${CONFMODE} blfs/units/haveged.service ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable haveged.service
 
 install-httpd: create-dirs
 	install -m ${CONFMODE} blfs/tmpfiles/httpd.conf ${TMPFILESDIR}/
 	install -m ${CONFMODE} blfs/units/httpd.service ${UNITSDIR}/
 	systemd-tmpfiles --create httpd.conf
-#	test -n "${DESTDIR}" || systemctl enable httpd.service
 
 install-iptables: create-dirs
 	install -m ${CONFMODE} blfs/units/iptables.service ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable iptables.service
 
 install-kea-dhcpd: create-dirs
 	install -m ${CONFMODE} blfs/units/kea-* ${UNITSDIR}/
 	install -m ${CONFMODE} blfs/tmpfiles/kea.conf ${TMPFILESDIR}/
 	systemd-tmpfiles --create kea.conf
-#	test -n "${DESTDIR}" || systemctl enable kea-dhcp4-server.service
 
 install-krb5: create-dirs
 	install -m ${CONFMODE} blfs/units/krb5-kdc.service ${UNITSDIR}/
 	install -m ${CONFMODE} blfs/units/krb5-kpropd.service ${UNITSDIR}/
 	install -m ${CONFMODE} blfs/units/krb5-kadmind.service ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable krb5-kdc.service
-#	test -n "${DESTDIR}" || systemctl enable krb5-kpropd.service
-#	test -n "${DESTDIR}" || systemctl enable krb5-kadmind.service
 
 install-lightdm: create-dirs
 	install -m ${CONFMODE} blfs/units/lightdm.service ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable lightdm.service
 
 install-mariadb: create-dirs
 	install -m ${CONFMODE} blfs/tmpfiles/mariadb.conf ${TMPFILESDIR}/
 	install -m ${CONFMODE} blfs/units/mariadb.service ${UNITSDIR}/
 	systemd-tmpfiles --create mariadb.conf
-#	test -n "${DESTDIR}" || systemctl enable mariadb.service
 
 install-named: create-dirs
 	install -m ${CONFMODE} blfs/tmpfiles/named.conf ${TMPFILESDIR}/
 	install -m ${CONFMODE} blfs/units/named.service ${UNITSDIR}/
 	systemd-tmpfiles --create named.conf
-#	test -n "${DESTDIR}" || systemctl enable named.service
 
 install-nfs-client: create-dirs
 	install -m ${CONFMODE} blfs/default/nfs-utils ${DEFAULTSDIR}/
@@ -90,50 +70,38 @@ install-nfs-client: create-dirs
 	install -m ${CONFMODE} blfs/units/rpc-statd-notify.service ${UNITSDIR}/
 	install -m ${CONFMODE} blfs/units/nfs-client.service ${UNITSDIR}/
 	install -m ${CONFMODE} blfs/units/nfs-client.target ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable nfs-client.target
 
 install-nfs-server: install-nfs-client
 	install -m ${CONFMODE} blfs/units/nfs-server.service ${UNITSDIR}/
 	install -m ${CONFMODE} blfs/units/rpc-mountd.service ${UNITSDIR}/
 	install -m ${CONFMODE} blfs/units/proc-fs-nfsd.mount ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable nfs-server.service
 
 install-nfsv4-server: install-nfs-server
 	install -m ${CONFMODE} blfs/units/rpc-idmapd.service ${UNITSDIR}/
 	install -m ${CONFMODE} blfs/units/var-lib-nfs-rpc_pipefs.mount ${UNITSDIR}/
 
-#install-nftables: create-dirs
-#	install -m ${CONFMODE} blfs/units/nftables.service ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable nftables.service
-
 install-ntpd: create-dirs
 	install -m ${CONFMODE} blfs/units/ntpd.service ${UNITSDIR}/
 	install -d -m ${DIRMODE} ${DESTDIR}/usr/lib/systemd/ntp-units.d
-#	test -n "${DESTDIR}" || systemctl enable ntpd.service
 
 install-php-fpm: create-dirs
 	install -m ${CONFMODE} blfs/units/php-fpm.service ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable php-fpm.service
 
 install-postfix: create-dirs
 	install -m ${CONFMODE} blfs/units/postfix.service ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable postfix.service
 
 install-postgresql: create-dirs
 	install -m ${CONFMODE} blfs/tmpfiles/postgresql.conf ${TMPFILESDIR}/
 	install -m ${CONFMODE} blfs/units/postgresql.service ${UNITSDIR}/
 	systemd-tmpfiles --create postgresql.conf
-#	test -n "${DESTDIR}" || systemctl enable postgresql.service
 
 install-proftpd: create-dirs
 	install -m ${CONFMODE} blfs/units/proftpd.service ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable proftpd.service
 
 install-rsyncd: create-dirs
 	install -m ${CONFMODE} blfs/units/rsyncd.service ${UNITSDIR}/
 	install -m ${CONFMODE} blfs/units/rsyncdat.service ${UNITSDIR}/rsyncd@.service
 	install -m ${CONFMODE} blfs/units/rsyncd.socket ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable rsyncd.service
 
 install-samba: create-dirs
 	install -m ${CONFMODE} blfs/default/samba ${DEFAULTSDIR}/
@@ -144,65 +112,43 @@ install-samba: create-dirs
 	install -m ${CONFMODE} blfs/units/smbdat.service ${UNITSDIR}/smbd@.service
 	install -m ${CONFMODE} blfs/units/smbd.socket ${UNITSDIR}/
 	systemd-tmpfiles --create samba.conf
-#	test -n "${DESTDIR}" || systemctl enable nmbd.service
-#	test -n "${DESTDIR}" || systemctl enable smbd.service
 
 install-saslauthd: create-dirs
 	install -m ${CONFMODE} blfs/default/saslauthd ${DEFAULTSDIR}/
 	install -m ${CONFMODE} blfs/tmpfiles/saslauthd.conf ${TMPFILESDIR}/
 	install -m ${CONFMODE} blfs/units/saslauthd.service ${UNITSDIR}/
 	systemd-tmpfiles --create saslauthd.conf
-#	test -n "${DESTDIR}" || systemctl enable saslauthd.service
-
-#install-sendmail: create-dirs
-#	install -m ${CONFMODE} blfs/default/sendmail ${DEFAULTSDIR}/
-#	install -m ${CONFMODE} blfs/units/sm-client.service ${UNITSDIR}/
-#	install -m ${CONFMODE} blfs/units/sendmail.service ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable sendmail.service
 
 install-slapd: create-dirs
 	install -m ${CONFMODE} blfs/default/slapd ${DEFAULTSDIR}/
 	install -m ${CONFMODE} blfs/tmpfiles/slapd.conf ${TMPFILESDIR}/
 	install -m ${CONFMODE} blfs/units/slapd.service ${UNITSDIR}/
 	systemd-tmpfiles --create slapd.conf
-#	test -n "${DESTDIR}" || systemctl enable slapd.service
 
 install-sshd: create-dirs
 	install -m ${CONFMODE} blfs/units/sshd.service ${UNITSDIR}/
 	install -m ${CONFMODE} blfs/units/sshdat.service ${UNITSDIR}/sshd@.service
 	install -m ${CONFMODE} blfs/units/sshd.socket ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable sshd.service
 
 install-sysmond: create-dirs
 	install -m ${CONFMODE} blfs/units/sysmond.service ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable sysmond.service
 
 install-svnserve: create-dirs
 	install -m ${CONFMODE} blfs/default/svnserve ${DEFAULTSDIR}/
 	install -m ${CONFMODE} blfs/tmpfiles/svnserve.conf ${TMPFILESDIR}/
 	install -m ${CONFMODE} blfs/units/svnserve.service ${UNITSDIR}/
 	systemd-tmpfiles --create svnserve.conf
-#	test -n "${DESTDIR}" || systemctl enable svnserve.service
 
 install-unbound: create-dirs
 	install -m ${CONFMODE} blfs/units/unbound.service ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable unbound.service
-
-#install-vsftpd: create-dirs
-#	install -m ${CONFMODE} blfs/units/vsftpd.service ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable vsftpd.service
 
 install-winbindd: install-samba
 	install -m ${CONFMODE} blfs/units/winbindd.service ${UNITSDIR}/
-#	test -n "${DESTDIR}" || systemctl enable winbindd.service
 
 uninstall-acpid:
 	test -n "${DESTDIR}" || systemctl stop acpid.service
 	test -n "${DESTDIR}" || systemctl disable acpid.socket
 	rm -f ${UNITSDIR}/acpid.service ${UNITSDIR}/acpid.socket
-
-#uninstall-dhcpcd:
-#	rm -f ${UNITSDIR}/dhcpcd@.service
 
 uninstall-exim:
 	test -n "${DESTDIR}" || systemctl stop exim.service
@@ -218,11 +164,6 @@ uninstall-gpm:
 	test -n "${DESTDIR}" || systemctl stop gpm.service
 	test -n "${DESTDIR}" || systemctl disable gpm.service
 	rm -f ${UNITSDIR}/gpm.service
-
-#uninstall-haveged:
-#	test -n "${DESTDIR}" || systemctl stop haveged.service
-#	test -n "${DESTDIR}" || systemctl disable haveged.service
-#	rm -f ${UNITSDIR}/haveged.service
 
 uninstall-httpd:
 	test -n "${DESTDIR}" || systemctl stop httpd.service
@@ -254,11 +195,6 @@ uninstall-lightdm:
 	test -n "${DESTDIR}" || systemctl disable lightdm.service
 	rm -f ${UNITSDIR}/lightdm.service
 
-#uninstall-mysqld:
-#	test -n "${DESTDIR}" || systemctl stop mysqld.service
-#	test -n "${DESTDIR}" || systemctl disable mysqld.service
-#	rm -f ${TMPFILESDIR}/mysqld.conf ${UNITSDIR}/mysqld.service
-
 uninstall-mariadb:
 	test -n "${DESTDIR}" || systemctl stop mariadb.service
 	test -n "${DESTDIR}" || systemctl disable mariadb.service
@@ -284,10 +220,6 @@ uninstall-nfs-server: uninstall-nfsv4-server
 uninstall-nfsv4-server:
 	rm -f ${UNITSDIR}/rpc-idmapd.service
 	rm -f ${UNITSDIR}/var-lib-nfs-rpc_pipefs.mount
-
-#uninstall-nftables:
-#	test -n "${DESTDIR}" || systemctl disable nftables.service
-#	rm -f ${UNITSDIR}/nftables.service
 
 uninstall-ntpd:
 	test -n "${DESTDIR}" || systemctl stop ntpd.service
@@ -335,11 +267,6 @@ uninstall-saslauthd:
 	test -n "${DESTDIR}" || systemctl disable saslauthd.service
 	rm -f ${DEFAULTSDIR}/saslauthd ${TMPFILESDIR}/saslauthd.conf ${UNITSDIR}/saslauthd.service
 
-#uninstall-sendmail:
-#	test -n "${DESTDIR}" || systemctl stop sendmail.service
-#	test -n "${DESTDIR}" || systemctl disable sendmail.service
-#	rm -f ${DEFAULTSDIR}/sendmail ${UNITSDIR}/sm-client.service ${UNITSDIR}/sendmail.service
-
 uninstall-slapd:
 	test -n "${DESTDIR}" || systemctl stop slapd.service
 	test -n "${DESTDIR}" || systemctl disable slapd.service
@@ -367,11 +294,6 @@ uninstall-unbound:
 	test -n "${DESTDIR}" || systemctl disable unbound.service
 	rm -f ${UNITSDIR}/unbound.service
 
-#uninstall-vsftpd:
-#	test -n "${DESTDIR}" || systemctl stop vsftpd.service
-#	test -n "${DESTDIR}" || systemctl disable vsftpd.service
-#	rm -f ${UNITSDIR}/vsftpd.service
-
 uninstall-winbindd:
 	test -n "${DESTDIR}" || systemctl stop winbindd.service
 	test -n "${DESTDIR}" || systemctl disable winbindd.service
@@ -379,7 +301,6 @@ uninstall-winbindd:
 
 .PHONY: all create-dirs create-service-dir \
 	install-acpid \
-#	install-dhcpcd \
 	install-exim \
 	install-git-daemon \
 	install-gpm \
@@ -391,8 +312,7 @@ uninstall-winbindd:
 	install-named \
 	install-nfs-client \
 	install-nfs-server \
-#	install-nfsv4-server \
-#	install-nftables \
+	install-nfsv4-server \
 	install-ntp \
 	install-php-fpm \
 	install-postfix \
@@ -401,16 +321,13 @@ uninstall-winbindd:
 	install-rsyncd \
 	install-samba \
 	install-saslauthd \
-#	install-sendmail \
 	install-slapd \
 	install-sshd \
 	install-svnserve \
 	install-sysmond \
 	install-unbound \
-#	install-vsftpd \
 	install-winbindd \
 	uninstall-acpid \
-#	uninstall-dhcpcd \
 	uninstall-exim \
 	uninstall-git-daemon \
 	uninstall-gpm \
@@ -418,13 +335,11 @@ uninstall-winbindd:
 	uninstall-iptables \
 	uninstall-kea-dhcpd \
 	uninstall-krb5 \
-#	uninstall-mysqld \
 	uninstall-mariadb \
 	uninstall-named \
 	uninstall-nfs-client \
 	uninstall-nfs-server \
-#	uninstall-nfsv4-server \
-#	uninstall-nftables \
+	uninstall-nfsv4-server \
 	uninstall-ntpd \
 	uninstall-php-fpm \
 	uninstall-postfix \
@@ -433,11 +348,9 @@ uninstall-winbindd:
 	uninstall-rsyncd \
 	uninstall-samba \
 	uninstall-saslauthd \
-#	uninstall-sendmail \
 	uninstall-slapd \
 	uninstall-sshd \
 	uninstall-svnserve \
 	uninstall-sysmond \
 	uninstall-unbound \
-#	uninstall-vsftpd \
-	uninstall-winbindd \
+	uninstall-winbindd
