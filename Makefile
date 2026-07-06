@@ -103,16 +103,6 @@ install-rsyncd: create-dirs
 	install -m ${CONFMODE} blfs/units/rsyncdat.service ${UNITSDIR}/rsyncd@.service
 	install -m ${CONFMODE} blfs/units/rsyncd.socket ${UNITSDIR}/
 
-install-samba: create-dirs
-	install -m ${CONFMODE} blfs/default/samba ${DEFAULTSDIR}/
-	install -m ${CONFMODE} blfs/tmpfiles/samba.conf ${TMPFILESDIR}/
-	install -m ${CONFMODE} blfs/units/nmbd.service ${UNITSDIR}/
-	install -m ${CONFMODE} blfs/units/samba.service ${UNITSDIR}/
-	install -m ${CONFMODE} blfs/units/smbd.service ${UNITSDIR}/
-	install -m ${CONFMODE} blfs/units/smbdat.service ${UNITSDIR}/smbd@.service
-	install -m ${CONFMODE} blfs/units/smbd.socket ${UNITSDIR}/
-	systemd-tmpfiles --create samba.conf
-
 install-saslauthd: create-dirs
 	install -m ${CONFMODE} blfs/default/saslauthd ${DEFAULTSDIR}/
 	install -m ${CONFMODE} blfs/tmpfiles/saslauthd.conf ${TMPFILESDIR}/
@@ -141,9 +131,6 @@ install-svnserve: create-dirs
 
 install-unbound: create-dirs
 	install -m ${CONFMODE} blfs/units/unbound.service ${UNITSDIR}/
-
-install-winbindd: install-samba
-	install -m ${CONFMODE} blfs/units/winbindd.service ${UNITSDIR}/
 
 uninstall-acpid:
 	test -n "${DESTDIR}" || systemctl stop acpid.service
@@ -252,16 +239,6 @@ uninstall-rsyncd:
 	rm -f ${UNITSDIR}/rsyncd.service ${UNITSDIR}/rsyncd@.service
 	rm -f ${UNITSDIR}/rsyncd.socket
 
-uninstall-samba: uninstall-winbindd
-	test -n "${DESTDIR}" || systemctl stop smbd.socket
-	test -n "${DESTDIR}" || systemctl stop smbd.service
-	test -n "${DESTDIR}" || systemctl stop nmbd.service
-	test -n "${DESTDIR}" || systemctl disable smbd.socket
-	test -n "${DESTDIR}" || systemctl disable smbd.service
-	test -n "${DESTDIR}" || systemctl disable nmbd.service
-	rm -f ${DEFAULTSDIR}/samba ${TMPFILESDIR}/samba.conf ${UNITSDIR}/nmbd.service
-	rm -f ${UNITSDIR}/smbd.service ${UNITSDIR}/smbd@.service ${UNITSDIR}/smbd.socket
-
 uninstall-saslauthd:
 	test -n "${DESTDIR}" || systemctl stop saslauthd.service
 	test -n "${DESTDIR}" || systemctl disable saslauthd.service
@@ -294,11 +271,6 @@ uninstall-unbound:
 	test -n "${DESTDIR}" || systemctl disable unbound.service
 	rm -f ${UNITSDIR}/unbound.service
 
-uninstall-winbindd:
-	test -n "${DESTDIR}" || systemctl stop winbindd.service
-	test -n "${DESTDIR}" || systemctl disable winbindd.service
-	rm -f ${UNITSDIR}/winbindd.service
-
 .PHONY: all create-dirs create-service-dir \
 	install-acpid \
 	install-exim \
@@ -319,14 +291,12 @@ uninstall-winbindd:
 	install-postgresql \
 	install-proftpd \
 	install-rsyncd \
-	install-samba \
 	install-saslauthd \
 	install-slapd \
 	install-sshd \
 	install-svnserve \
 	install-sysmond \
 	install-unbound \
-	install-winbindd \
 	uninstall-acpid \
 	uninstall-exim \
 	uninstall-git-daemon \
@@ -346,11 +316,9 @@ uninstall-winbindd:
 	uninstall-postgresql \
 	uninstall-proftpd \
 	uninstall-rsyncd \
-	uninstall-samba \
 	uninstall-saslauthd \
 	uninstall-slapd \
 	uninstall-sshd \
 	uninstall-svnserve \
 	uninstall-sysmond \
 	uninstall-unbound \
-	uninstall-winbindd
